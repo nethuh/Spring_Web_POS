@@ -4,6 +4,7 @@ import lk.ijse.spring.dto.ItemDTO;
 import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class ItemController {
     @Autowired
     private ItemService service;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseUtil addItem(ItemDTO dto) {
         service.addItem(dto);
@@ -41,3 +43,4 @@ public class ItemController {
         return new ResponseUtil("Ok", "successfully searched", service.findItem(code));
     }
 }
+
